@@ -13,7 +13,7 @@ st.set_page_config(page_title='Modelorama El Rodeo', page_icon='🍻')
 
 # Sidebar
 sidebar = st.sidebar
-sidebar.image('logoModelorama.png')
+sidebar.image('img/logoModelorama.png')
 menu_principal = sidebar.selectbox('', ['Principal', 'Indicadores', 'Ingresos', 'Gastos', 'Inventarios', 'Pedidos'])
 sidebar.markdown('___')
 
@@ -44,3 +44,30 @@ if menu_catalogos == 'Formas de pago':
     with col2:
         #st.table(df_forma_pago)
         st.table(df_formas_pago)
+
+# Menú catálogos: Categorías de gastos
+
+if menu_catalogos == 'Categorías de gastos':
+    def tabla(tabla):
+        tabla = str(tabla)
+        consulta_db = pd.read_sql(f'SELECT * FROM {tabla}', con)
+        consulta_db = consulta_db.sort_values(by='clave', ascending=False).set_index('clave')
+        return consulta_db
+    
+    consulta = tabla('cat_gastos') 
+    col1, col2 = st.columns((1,2))
+    
+    with col1:
+        st.subheader('Alta de forma de pago')
+        form = st.form('Forma de pago', clear_on_submit=True)
+        descripcion = form.text_input('Descripcion:','')    
+        form_submit = form.form_submit_button('Agregar')
+    
+        if form_submit:
+            cur.execute("insert into cat_formas_pago (descripcion) values (?)", (descripcion,))
+            con.commit()
+            con.close()
+    with col2:
+        #st.table(df_forma_pago)
+        st.table(df_formas_pago)
+        #ok
