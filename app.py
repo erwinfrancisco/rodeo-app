@@ -8,7 +8,15 @@ cur = con.cursor()
 
 st.set_page_config(page_title='Modelorama El Rodeo', page_icon='🍻')
 
-# Header
+#Header
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # (pendiente)
 
 # Sidebar
