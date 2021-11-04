@@ -58,16 +58,16 @@ if menu_catalogos == 'Categorías de gastos':
     col1, col2 = st.columns((1,2))
     
     with col1:
-        st.subheader('Alta de forma de pago')
-        form = st.form('Forma de pago', clear_on_submit=True)
-        descripcion = form.text_input('Descripcion:','')    
+        st.subheader('Alta de categorías de gastos')
+        form = st.form('Categorías de gastos', clear_on_submit=True)
+        categoria = form.text_input('Categoría:','')
+        subcategoria = form.text_input('Subcategoría:','')
+        descripcion = form.text_input('Descripción:','')        
         form_submit = form.form_submit_button('Agregar')
     
         if form_submit:
-            cur.execute("insert into cat_formas_pago (descripcion) values (?)", (descripcion,))
+            cur.execute("insert into cat_gastos (categoria, subcategoria, descripcion) values (?,?,?)", (categoria, subcategoria, descripcion,))
             con.commit()
             con.close()
     with col2:
-        #st.table(df_forma_pago)
-        st.table(df_formas_pago)
-        #ok
+        st.table(consulta)
