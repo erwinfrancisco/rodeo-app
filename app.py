@@ -53,8 +53,7 @@ if menu_catalogos == 'Categorías de gastos':
         consulta_db = pd.read_sql(f'SELECT * FROM {tabla}', con)
         consulta_db = consulta_db.sort_values(by='clave', ascending=False).set_index('clave')
         return consulta_db
-    
-    consulta = tabla('cat_gastos') 
+        
     col1, col2 = st.columns((1,2))
     
     with col1:
@@ -70,4 +69,5 @@ if menu_catalogos == 'Categorías de gastos':
             con.commit()
             con.close()
     with col2:
+        consulta = tabla('cat_gastos') 
         st.table(consulta)
