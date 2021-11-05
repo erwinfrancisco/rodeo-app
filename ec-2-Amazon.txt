@@ -1,0 +1,8 @@
+Credenciales amazon y sitio web
+
+
+http://52.201.218.27:8501/
+
+ssh -i streamlit_deploy_key.cer ec2-user@ec2-52-201-218-27.compute-1.amazonaws.com
+
+la llave ssh esta en el correo con asunto ssh amazon rodeo_am
