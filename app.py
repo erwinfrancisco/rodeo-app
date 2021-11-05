@@ -63,19 +63,20 @@ if menu_catalogos == 'Categorías de gastos':
         return consulta_db
         
     col1, col2 = st.columns((1,2))
-    
+    consulta = tabla('cat_gastos')
     with col1:
         st.subheader('Alta de catálogo de gastos')
         form = st.form('Alta catálogo de gastos', clear_on_submit=True)
-        categoria = form.text_input('Ingresa la categoría:','')
+        categoria = form.text_input('Ingresa una nueva categoría:','')
         subcategoria = form.text_input('Ingresa la subcategoría:','')
         descripcion = form.text_input('Descripción:','')       
         form_submit = form.form_submit_button('Agregar')
+        
     
         if form_submit:
             cur.execute("insert into cat_gastos (categoria, subcategoria, descripcion) values (?,?,?)", (categoria, subcategoria, descripcion,))
             con.commit()
             con.close()
     with col2:
-        consulta = tabla('cat_gastos') 
+        # consulta = tabla('cat_gastos') 
         st.table(consulta)
