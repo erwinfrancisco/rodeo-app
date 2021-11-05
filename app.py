@@ -8,7 +8,15 @@ cur = con.cursor()
 
 st.set_page_config(page_title='Modelorama El Rodeo', page_icon='🍻')
 
-# Header
+#Header
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # (pendiente)
 
 # Sidebar
@@ -57,11 +65,19 @@ if menu_catalogos == 'Categorías de gastos':
     col1, col2 = st.columns((1,2))
     
     with col1:
+<<<<<<< HEAD
         st.subheader('Alta de catálogo de gastos')
         form = st.form('Alta catálogo de gastos', clear_on_submit=True)
         categoria = form.text_input('Ingresa la categoría:','')
         subcategoria = form.text_input('Ingresa la subcategoría:','')
         descripcion = form.text_input('Descripción:','')       
+=======
+        st.subheader('Alta de categorías de gastos')
+        form = st.form('Categorías de gastos', clear_on_submit=True)
+        categoria = form.text_input('Categoría:','')
+        subcategoria = form.text_input('Subcategoría:','')
+        descripcion = form.text_input('Descripción:','')        
+>>>>>>> ec725017dfe0c98a3ef79380fa5652b030fe0cb8
         form_submit = form.form_submit_button('Agregar')
     
         if form_submit:
@@ -69,5 +85,8 @@ if menu_catalogos == 'Categorías de gastos':
             con.commit()
             con.close()
     with col2:
+<<<<<<< HEAD
         consulta = tabla('cat_gastos') 
+=======
+>>>>>>> ec725017dfe0c98a3ef79380fa5652b030fe0cb8
         st.table(consulta)
